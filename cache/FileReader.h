@@ -1,20 +1,14 @@
 #include "IReader.h"
-
+//#include <string>
 
 template<typename K, typename V, typename _S> class FileReader : public IReader<K, V>
 {
 public:
-
-
-
-
-	override std::string operator[](K & key)
+	virtual V operator[](const K & key)
 	{
 		
 	}
-	
-	
-	FileReader::FileReader(_S & is)
+	FileReader(_S &is)
 	{
 		_stream = is;
 	}

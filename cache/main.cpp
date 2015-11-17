@@ -14,18 +14,21 @@ int main()
 
 	fstream dataFile;
 	dataFile.open("data.txt", ios::in);
-	FileReader<string, string, fstream> rd(dataFile);
+	FileReader rd(&dataFile);
 	Cache<string, string> cache(rd);
-	string k="1";
 
-	cache.reset();
+	//cache.reset();
 	try
 	{
-		std::cout << "key = " << cache[k] << std::endl;
+		//cache.add("111","j");
+		std::cout << "key = " << cache["33"] << std::endl;
+		std::cout << "key = " << cache["343"] << std::endl;
+		cin.get();
 	}
-	catch (const range_error & e)
+	catch (const range_error  &e)
 	{
-		cerr << e.what << endl;
+		cerr << e.what() << endl;
+		cin.get();
 	}
 	
 

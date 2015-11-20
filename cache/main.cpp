@@ -17,29 +17,28 @@ int main()
 	FileReader rd(&dataFile);
 	Cache<string, string> cache(rd);
 
-	//cache.reset();
 	try
 	{
-		//cache.add("111","j");
-		std::cout << "key = " << cache["33"] << std::endl;
-		std::cout << "key = " << cache["343"] << std::endl;
+
+		for (unsigned int i = 1; i <=30 ;++i)
+		{
+			std::cout << "key" << " - " << i << " = " << cache[to_string(i)] << endl;
+
+		}
+
 		cin.get();
+		for (unsigned int i = 1; i <= 40; ++i)
+		{
+			std::cout << "key" << " - " << i << " = " << cache[to_string(i)] << endl;
+
+		}
+		cin.get();
+
+
 	}
 	catch (const range_error  &e)
 	{
 		cerr << e.what() << endl;
 		cin.get();
 	}
-	
-
-	/*
-	char buffer[80];
-	time_t seconds = time(NULL);
-	tm* timeinfo = localtime(&seconds);
-	char* format = "%A, %B %d, %Y %I:%M:%S";
-	strftime(buffer, 80, format, timeinfo);
-	cout << "Current Datetime: " << buffer << endl << timeinfo << endl << seconds << endl;
-	cin.get();
-	return 0;
-	*/
 }

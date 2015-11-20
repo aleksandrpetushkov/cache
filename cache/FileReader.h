@@ -24,9 +24,11 @@ public:
 				pos = tmp.find_first_not_of(" \t", pos1);
 				pos1 = tmp.find_first_of(" \t", pos);
 				result = tmp.substr(pos, pos1 - pos);
+				(*is).seekg(0);
 				return result;
 			}
 		}
+		(*is).seekg(0);
 		throw std::range_error("in file no key\n");
 	}
 protected:

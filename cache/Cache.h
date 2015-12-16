@@ -7,14 +7,40 @@
 template<typename K, typename V, size_t limit = 30> class Cache : public IReader<K, V>
 {
 public:
+
+	bool exist(const K &key)
+	{
+		if (massKV.find(key)!=massKV.end())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+
+		}
+	}
+
+	V operator[](const int& i)
+	{
+		int z = i;
+		vector<K>::iterator iter=vecK.begin();
+		for (; z != 1; ++iter, --z)	{}
+		return massKV[(*iter)];
+	}
+	unsigned int size()
+	{
+		
+		return massKV.size();
+	}
 	Cache(IReader<std::string, std::string> & _file_reader)
 	{
 		file_reader = &_file_reader;
 	}
-	void reset(void)
+	void reset()
 	{
 		massKV.clear();
-		massTK.clear();
+		vecK.clear();
 	}
 
 
@@ -29,7 +55,7 @@ public:
 				{
 					vecK.erase(iter);
 					vecK.push_back(key);
-					cout << "readin from cache - ";
+					//cout << "readin from cache - ";
 					return massKV[key];
 
 				}
@@ -46,11 +72,11 @@ public:
 			}
 			massKV[key] = result;
 			vecK.push_back(key);
-			cout << "readin from file - ";
+			//cout << "readin from file - ";
 			return result;
 		}
 	}
-
+	
 protected:
 	IReader *file_reader;
 	std::map<K, V> massKV;
